@@ -18,6 +18,7 @@ function App() {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const isOpenRedux = useSelector(state => state.modals.isOpen)
   const entries = useSelector((state) => state.entries);
 
   useEffect(() => {
@@ -46,11 +47,6 @@ function App() {
     setIncomeTotal(totalIncomes);
     setExpenseTotal(totalExpenses);
   }, [entries]);
-
-  const deleteEntry = (id) => {
-    const result = entries.filter((entry) => entry.id !== id);
-    // setEntries(result);
-  };
 
   const editEntry = (id) => {
     if (id) {
@@ -107,7 +103,7 @@ function App() {
         setIsExpense={setIsExpense}
       />
       <ModalEdit
-        isOpen={isOpen}
+        isOpen={isOpenRedux}
         setIsOpen={setIsOpen}
         description={description}
         value={value}
